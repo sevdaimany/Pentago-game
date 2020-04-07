@@ -13,14 +13,12 @@ public class MapGame {
 
         for (int i = 0; i < 6; i++) {
             if (i == 0)
-                System.out.print(sample.get(4) +" " +sample.get(0));
+                System.out.print(sample.get(4) + " " + sample.get(0));
             else if (i == 2) {
                 System.out.print(sample.get(0) + "_____");
-            }
-                else if(i == 5){
-                    System.out.print("_____");
-                }
-             else {
+            } else if (i == 5) {
+                System.out.print("_____");
+            } else {
                 System.out.print(sample.get(0));
 
             }
@@ -51,9 +49,9 @@ public class MapGame {
             } else if (i == 15) {
                 for (int j = 0; j < 7; j++) {
                     if (j == 6)
-                        System.out.print("____" + "|"); 
-                     else
-                    System.out.print(sample.get(0));
+                        System.out.print("____" + "|");
+                    else
+                        System.out.print(sample.get(0));
                 }
             }
 
@@ -97,9 +95,36 @@ public class MapGame {
                 System.out.println("|");
                 System.out.print(sample.get(4) + "|");
                 System.out.print(sample.get(3) + sample.get(3) + sample.get(3) + "|  |" + sample.get(3) + sample.get(3)
-                + sample.get(3) + "|");
+                        + sample.get(3) + "|");
             }
             System.out.print("\n");
         }
+    }
+
+    public boolean select(Object player, Game game) {
+        Player newPlayer = (Player) player;
+        Point point = newPlayer.choose();
+        if (check(point) && check(point, game)) {
+            game.addMarble(point, newPlayer);
+            return true;
+        } else
+            return false;
+    }
+
+    public boolean check(Point point, Game game) {
+        int[][] arr = game.getArr();
+        if (arr[point.getX()][point.getY()] == 0)
+            return true;
+        else
+            return false;
+
+    }
+
+    public boolean check(Point point) {
+        if (point.getX() >= 0 && point.getX() < 6 && point.getY() >= 0 && point.getY() < 6)
+            return true;
+        else
+            return false;
+
     }
 }
