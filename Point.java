@@ -2,8 +2,8 @@
 public class Point {
   private final int x;
   private final int y;
-  private int numBlock;
-  private String turn;
+  private final int numBlock;
+  private final String turn;
 
   public Point(int x, int y, int numBlock, String turn) {
       this.x = x;
@@ -18,6 +18,14 @@ public class Point {
 
   public int getY() {
       return y;
+  }
+
+  public int getNumBlock() {
+      return numBlock;
+  }
+
+  public String getTurn() {
+      return turn;
   }
 
 

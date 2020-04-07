@@ -103,9 +103,12 @@ public class MapGame {
 
     public boolean select(Object player, Game game) {
         Player newPlayer = (Player) player;
+        int[][] arr;
         Point point = newPlayer.choose();
         if (check(point) && check(point, game)) {
             game.addMarble(point, newPlayer);
+            arr = game.twist(point, game);
+            copyArr(arr, game, point);
             return true;
         } else
             return false;
@@ -126,5 +129,29 @@ public class MapGame {
         else
             return false;
 
+    }
+
+    private void copyArr(int[][] arr, Game game, Point point) {
+        int turn = point.getNumBlock();
+        int k = 0;
+        int l = 0;
+        if (turn == 1) {
+            k = 0;
+            l = 0;
+        } else if (turn == 2) {
+            k = 0;
+            l = 1;
+        } else if (turn == 3) {
+            k = 1;
+            l = 0;
+        } else if (turn == 4) {
+            k = 1;
+            l = 1;
+        }
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                game.getArr()[i + (3 * k)][j + (3 * l)] = arr[i][j];
+            }
+        }
     }
 }
