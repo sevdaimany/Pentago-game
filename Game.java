@@ -57,7 +57,7 @@ public class Game {
         Player player2 = new Player(-1);
         MapGame map = new MapGame();
 
-        while (true) { 
+        while (true) {
             if (checkEqual(game)) {
                 System.out.println("Equal");
                 return;
@@ -65,14 +65,14 @@ public class Game {
                 map.printMap(game.getArr());
                 boolean EndOfGame = map.select(player, game);
                 if (EndOfGame == false) {
-                 //   printMenu();
+                    printMenu();
                     break;
                 }
 
                 map.printMap(game.getArr());
                 EndOfGame = map.select(player2, game);
                 if (EndOfGame == false) {
-                  //  printMenu();
+                    printMenu();
                     break;
                 }
 
@@ -100,8 +100,8 @@ public class Game {
                     int turn = game.getArr()[i][j];
                     for (int k = -1; k < 2; k++) {
                         for (int l = -1; l < 2; l++) {
-                            if(k == 0 && l == 0)
-                            break;
+                            if (k == 0 && l == 0)
+                                break;
                             int count2 = 1;
                             for (int count = 1; count < 5; count++) {
                                 if (map.check(i + k * (count), j + l * (count))) {
@@ -123,9 +123,8 @@ public class Game {
         return 0;
     }
 
-  /* 
-   public void printMenu() {
+    public void printMenu() {
         System.out.println("\t\t\t\t\t\t\t\t\t\t   1)Play with friend\n\t\t\t\t\t\t\t\t\t\t   2)End game");
-    }*/
+    }
 
 }

@@ -44,14 +44,15 @@ public class Player {
         if (map.check(x, y) && map.check(x, y, game)) {
             game.addMarble(x, y, player);
             int winner = game.winner(game);
-            clearScreen();
-            map.printMap(game.getArr());
 
-            map.printWinner(winner);
             if (winner != 0) {
+                clearScreen();
+                map.printMap(game.getArr());
                 Point point = new Point(-1, -1, -1, "s");
+                map.printWinner(winner);
                 return point;
             }
+          
         } else {
             boolean c = true;
             while (c) {

@@ -11,6 +11,7 @@ public class MapGame {
         sample.add(4, "\t\t\t\t\t\t\t\t\t\t   ");
         sample.add(5, "   0  ");
 
+        System.out.println(sample.get(4) + "    0     1     2         3     4     5");
         for (int i = 0; i < 6; i++) {
             if (i == 0)
                 System.out.print(sample.get(4) + " " + sample.get(0));
@@ -25,6 +26,23 @@ public class MapGame {
         }
         System.out.print("\n");
         for (int i = 1; i < 16; i++) {
+            int m = 0;
+            if (i == 2)
+                m = 0;
+            else if (i == 4)
+                m = 1;
+            else if (i == 6)
+                m = 2;
+            else if (i == 10)
+                m = 3;
+            else if (i == 12)
+                m = 4;
+            else if (i == 14)
+                m = 5;
+            if(i == 2 || i == 4 || i == 6 || i == 10 || i == 12 || i == 14){
+                System.out.print("\t\t\t\t\t\t\t\t\t\t "+m+ " |");
+            }
+            else
             System.out.print(sample.get(4) + "|");
             if (i == 7) {
                 for (int j = 0; j < 6; j++) {
@@ -105,12 +123,20 @@ public class MapGame {
         Player newPlayer = (Player) player;
         int[][] arr;
         Point point = newPlayer.choose(game);
-        if(point.getX() == -1){
+        if (point.getX() == -1) {
             return false;
-        }
-        else{ 
+        } else {
             arr = game.twist(point, game);
             copyArr(arr, game, point);
+            int winner = game.winner(game);
+            if (winner != 0) {
+                newPlayer.clearScreen();
+                printMap(game.getArr());
+                printWinner(winner);
+                return false;
+
+            }
+
             return true;
         }
     }
@@ -124,7 +150,7 @@ public class MapGame {
 
     }
 
-    public boolean check(int x,int y) {
+    public boolean check(int x, int y) {
         if (x >= 0 && x < 6 && y >= 0 && y < 6)
             return true;
         else
@@ -156,11 +182,11 @@ public class MapGame {
         }
     }
 
-    public void printWinner(int turn){
-        if(turn == 1){
+    public void printWinner(int turn) {
+        if (turn == 1) {
+
             System.out.println("Black win");
-        }
-        else if( turn == -1){
+        } else if (turn == -1) {
             System.out.println("White win");
         }
     }
