@@ -16,8 +16,8 @@ public class Game {
         return arr;
     }
 
-    public void addMarble(Point point, Player player) {
-        arr[point.getX()][point.getY()] = player.getPlayer();
+    public void addMarble(int x, int y, int player) {
+        arr[x][y] = player;
     }
 
     public int[][] twist(Point point, Game game) {
@@ -28,16 +28,13 @@ public class Game {
         if (turn == 1) {
             k = 0;
             l = 0;
-        }
-        else if(turn == 2){
+        } else if (turn == 2) {
             k = 0;
             l = 1;
-        }
-        else if(turn == 3){
+        } else if (turn == 3) {
             k = 1;
             l = 0;
-        }
-        else if(turn == 4){
+        } else if (turn == 4) {
             k = 1;
             l = 1;
         }
@@ -49,9 +46,86 @@ public class Game {
         } else if (point.getTurn().equals("p")) {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++)
-                    arr[2 - j][i] = game.getArr()[i + (3* k)][j + (3* l)];
+                    arr[2 - j][i] = game.getArr()[i + (3 * k)][j + (3 * l)];
             }
         }
         return arr;
     }
+
+    public void game(Game game) {
+        Player player = new Player(1);
+        Player player2 = new Player(-1);
+        MapGame map = new MapGame();
+
+        while (true) { 
+            if (checkEqual(game)) {
+                System.out.println("Equal");
+                return;
+            } else {
+                map.printMap(game.getArr());
+                boolean EndOfGame = map.select(player, game);
+                if (EndOfGame == false) {
+                 //   printMenu();
+                    break;
+                }
+
+                map.printMap(game.getArr());
+                EndOfGame = map.select(player2, game);
+                if (EndOfGame == false) {
+                  //  printMenu();
+                    break;
+                }
+
+            }
+
+        }
+
+    }
+
+    private boolean checkEqual(Game game) {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (game.getArr()[i][j] == 0)
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    public int winner(Game game) {
+        MapGame map = new MapGame();
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (game.getArr()[i][j] != 0) {
+                    int turn = game.getArr()[i][j];
+                    for (int k = -1; k < 2; k++) {
+                        for (int l = -1; l < 2; l++) {
+                            if(k == 0 && l == 0)
+                            break;
+                            int count2 = 1;
+                            for (int count = 1; count < 5; count++) {
+                                if (map.check(i + k * (count), j + l * (count))) {
+                                    if (game.getArr()[i + k * (count)][j + l * (count)] == turn) {
+                                        count2++;
+                                    }
+                                } else
+                                    break;
+
+                            }
+                            if (count2 == 5) {
+                                return turn;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+  /* 
+   public void printMenu() {
+        System.out.println("\t\t\t\t\t\t\t\t\t\t   1)Play with friend\n\t\t\t\t\t\t\t\t\t\t   2)End game");
+    }*/
+
 }

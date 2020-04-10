@@ -104,27 +104,28 @@ public class MapGame {
     public boolean select(Object player, Game game) {
         Player newPlayer = (Player) player;
         int[][] arr;
-        Point point = newPlayer.choose();
-        if (check(point) && check(point, game)) {
-            game.addMarble(point, newPlayer);
+        Point point = newPlayer.choose(game);
+        if(point.getX() == -1){
+            return false;
+        }
+        else{ 
             arr = game.twist(point, game);
             copyArr(arr, game, point);
             return true;
-        } else
-            return false;
+        }
     }
 
-    public boolean check(Point point, Game game) {
+    public boolean check(int x, int y, Game game) {
         int[][] arr = game.getArr();
-        if (arr[point.getX()][point.getY()] == 0)
+        if (arr[x][y] == 0)
             return true;
         else
             return false;
 
     }
 
-    public boolean check(Point point) {
-        if (point.getX() >= 0 && point.getX() < 6 && point.getY() >= 0 && point.getY() < 6)
+    public boolean check(int x,int y) {
+        if (x >= 0 && x < 6 && y >= 0 && y < 6)
             return true;
         else
             return false;
@@ -152,6 +153,15 @@ public class MapGame {
             for (int j = 0; j < 3; j++) {
                 game.getArr()[i + (3 * k)][j + (3 * l)] = arr[i][j];
             }
+        }
+    }
+
+    public void printWinner(int turn){
+        if(turn == 1){
+            System.out.println("Black win");
+        }
+        else if( turn == -1){
+            System.out.println("White win");
         }
     }
 }
