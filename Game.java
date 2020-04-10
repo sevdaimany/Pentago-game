@@ -52,9 +52,21 @@ public class Game {
         return arr;
     }
 
-    public void game(Game game) {
-        Player player = new Player(1);
-        Player player2 = new Player(-1);
+    public void game(Game game, int choose) {
+        Player player = null;
+        Player player2 = null;
+        if (choose == 1) {
+             player = new Player();
+             player.setPlayer(1);
+             player2 = new Player();
+             player2.setPlayer(-1);
+        }
+        else if(choose == 2){
+            player = new Player();
+            player.setPlayer(1);
+            player2 = new Ai();
+            player2.setPlayer(-1);
+        }
         MapGame map = new MapGame();
 
         while (true) {
@@ -124,7 +136,7 @@ public class Game {
     }
 
     public void printMenu() {
-        System.out.println("\t\t\t\t\t\t\t\t\t\t   1)Play with friend\n\t\t\t\t\t\t\t\t\t\t   2)End game");
+        System.out.println("\t\t\t\t\t\t\t\t\t\t   1)Play with friend\n\t\t\t\t\t\t\t\t\t\t   2)Play online\n\t\t\t\t\t\t\t\t\t\t   3)End game");
     }
 
 }

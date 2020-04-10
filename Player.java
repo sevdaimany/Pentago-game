@@ -3,9 +3,7 @@ import java.util.Scanner;
 public class Player {
     private int player;
 
-    public Player(int player) {
-        this.player = player;
-    }
+   
 
     public int getPlayer() {
         return player;
