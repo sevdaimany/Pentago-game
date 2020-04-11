@@ -1,7 +1,18 @@
 import java.util.ArrayList;
 
+/**
+ * MapGame class represent a map in game
+ * 
+ * @author sevda imany
+ * @version 0.0
+ */
 public class MapGame {
 
+    
+    /** 
+     * this method prints map in game
+     * @param arr[][]
+     */
     public void printMap(int arr[][]) {
         ArrayList<String> sample = new ArrayList<String>();
         sample.add(0, "______");
@@ -119,6 +130,13 @@ public class MapGame {
         }
     }
 
+    
+    /** 
+     * this method play game with given player
+     * @param player
+     * @param game
+     * @return {@code false} if player won the game otherwise {@code true} 
+     */
     public boolean select(Object player, Game game) {
         Player newPlayer = (Player) player;
         int[][] arr;
@@ -141,6 +159,14 @@ public class MapGame {
         }
     }
 
+    
+    /** 
+     * thid method check if the given x and y are empty place in map or not 
+     * @param x
+     * @param y
+     * @param game
+     * @return {@code true} if the map is empty in given coordinate otherwise {@code false} 
+     */
     public boolean check(int x, int y, Game game) {
         int[][] arr = game.getArr();
         if (arr[x][y] == 0)
@@ -150,6 +176,13 @@ public class MapGame {
 
     }
 
+    
+    /** 
+     * this method check that a given coordinate is in the map or not
+     * @param x
+     * @param y
+     * @return {@code true} if the given coordinate is acceptable otherwise {@code false}
+     */
     public boolean check(int x, int y) {
         if (x >= 0 && x < 6 && y >= 0 && y < 6)
             return true;
@@ -158,6 +191,13 @@ public class MapGame {
 
     }
 
+    
+    /** 
+     * this method copy given arr to the main arr in game
+     * @param arr
+     * @param game
+     * @param point
+     */
     private void copyArr(int[][] arr, Game game, Point point) {
         int turn = point.getNumBlock();
         int k = 0;
@@ -182,12 +222,21 @@ public class MapGame {
         }
     }
 
+    
+    /** 
+     * this method print winner
+     * @param turn
+     */
     public void printWinner(int turn) {
         if (turn == 1) {
 
-            System.out.println("Black win");
+            System.out.println("\n\t\t\t\t\t\t\t\t\t\t   Black win.\n\n");
         } else if (turn == -1) {
-            System.out.println("White win");
+            System.out.println("\n\t\t\t\t\t\t\t\t\t\t   White win.\n\n");
+        }
+        else if(turn == 2){
+            System.out.println("Equal");
         }
     }
+
 }

@@ -1,14 +1,29 @@
 import java.util.Scanner;
 
+/**
+ * player class represent a player in class
+ * it holds an int number that is 1 for black player and -1 for white
+ * 
+ * @author sevda imany
+ * @version 0.0
+ */
 public class Player {
+    //1 for black player and -1 for white
     private int player;
 
    
-
+    
+    /** 
+     * @return int
+     */
     public int getPlayer() {
         return player;
     }
 
+    
+    /** 
+     * @param player
+     */
     public void setPlayer(int player) {
         this.player = player;
     }
@@ -18,6 +33,13 @@ public class Player {
         System.out.flush();
     }
 
+    
+    /**
+     * this method get a coordinate, block number and turn from user
+     * check if the coordinate is acceptable
+     * @param game
+     * @return Point 
+     */
     public Point choose(Game game) {
         MapGame map = new MapGame();
 
@@ -25,12 +47,12 @@ public class Player {
         map.printMap(game.getArr());
 
         if (player == 1)
-            System.out.println("Black turn:");
+            System.out.println("\n\t\t\t\t\t\t\t\t\t\t   Black turn:");
         else
-            System.out.println("White turn:");
+            System.out.println("\n\t\t\t\t\t\t\t\t\t\t   White turn:");
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter a coordinate: (x, y)");
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t   Please enter a coordinate: (x, y)");
         String input = sc.nextLine();
         String[] inputs = input.split(", ");
         String input1 = inputs[0].substring(1, inputs[0].length());
@@ -57,7 +79,7 @@ public class Player {
                 clearScreen();
                 map.printMap(game.getArr());
 
-                System.out.println("Wrong input . Please enter another coordinate: (x, y)");
+                System.out.println("\n\t\t\t\t\t\t\t\t\t\t   Wrong input . Please enter another coordinate: (x, y)");
                 input = sc.nextLine();
                 inputs = input.split(", ");
                 input1 = inputs[0].substring(1, inputs[0].length());
@@ -76,13 +98,13 @@ public class Player {
         clearScreen();
         map.printMap(game.getArr());
 
-        System.out.println("Please enter a block number to twist: ");
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t   Please enter a block number to twist: ");
         int numBlock = sc.nextInt();
         sc.nextLine();
         clearScreen();
         map.printMap(game.getArr());
 
-        System.out.println("Please enter 's' to twist clockwise and 'p' for counter clockwise: ");
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t   Please enter 's' to twist clockwise and 'p' for counter clockwise: ");
         String turn = sc.next();
         sc.nextLine();
 

@@ -1,7 +1,21 @@
 import java.util.Random;
 
+/**
+ * Ai class represent a Artificial intelligence in game
+ * 
+ * @author sevda imany
+ * @version 0.0
+ */
 public class Ai extends Player {
 
+    
+   /**
+     * this method get a random coordinate, block number and turn
+     * check if the coordinate is acceptable
+     * @param game
+     * @return Point 
+     */
+    @Override
     public Point choose(Game game) {
         MapGame map = new MapGame();
 
@@ -9,10 +23,6 @@ public class Ai extends Player {
 
         clearScreen();
         map.printMap(game.getArr());
-
-        System.out.println("White turn:");
-
-      
 
         int x = rand.nextInt(6);
         int y = rand.nextInt(6);
