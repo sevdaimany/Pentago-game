@@ -19,7 +19,7 @@ compile them(you must have JDK(Java Development Kit) on your system
 
 Run the game :
 ```
-java Run
+java Pentago
 ```
 
 ## how to play
