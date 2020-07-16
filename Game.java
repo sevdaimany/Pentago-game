@@ -194,7 +194,7 @@ public class Game {
      */
     public void printMenu() {
         System.out.println(
-                "\n\t\t\t\t\t\t\t\t\t\t   1)Play with friend\n\n\t\t\t\t\t\t\t\t\t\t   2)Play online\n\n\t\t\t\t\t\t\t\t\t\t   3)End game\n\n\t\t\t\t\t\t\t\t\t\t   4)How to play\n");
+                "\n\t\t\t\t\t\t\t\t\t\t   1)Play with friend\n\n\t\t\t\t\t\t\t\t\t\t   2)Play with Ai\n\n\t\t\t\t\t\t\t\t\t\t   3)End game\n\n\t\t\t\t\t\t\t\t\t\t   4)How to play\n");
     }
 
 }
